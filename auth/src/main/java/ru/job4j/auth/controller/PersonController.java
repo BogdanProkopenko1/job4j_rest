@@ -14,6 +14,7 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/person")
 public class PersonController {
+
     private final PersonService service;
 
     public PersonController(final PersonService service) {
@@ -55,6 +56,19 @@ public class PersonController {
         Person person = new Person();
         person.setId(id);
         this.service.delete(person);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/employeeId/{id}")
+    public List<Person> findAllByEmployeeId(@PathVariable int id) {
+        return StreamSupport.stream(
+                this.service.findAllByEmployeeId(id).spliterator(), false
+        ).collect(Collectors.toList());
+    }
+
+    @DeleteMapping("/employeeId/{id}")
+    public ResponseEntity<Void> deleteEmplPerson(@PathVariable int id) {
+        service.deleteAllByEmployeeId(id);
         return ResponseEntity.ok().build();
     }
 }

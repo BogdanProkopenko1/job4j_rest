@@ -14,6 +14,7 @@ public class Person {
     private int id;
     private String login;
     private String password;
+    private int employeeId;
 
     public static Person of(int id, String login, String password) {
         Person person = new Person();
@@ -21,6 +22,14 @@ public class Person {
         person.setLogin(login);
         person.setPassword(password);
         return person;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public int getId() {
